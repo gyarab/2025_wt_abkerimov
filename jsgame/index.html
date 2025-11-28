@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Game</title>
+
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            max-width: 600px;
+            margin: 40px auto;
+            text-align: center;
+        }
+        input {
+            padding: 3px;
+            margin: 6px;
+            font-size: 1rem;
+            width: 80px;
+        }
+        button {
+            padding: 6px 12px;
+            font-size: 1rem;
+            margin: 5px;
+            cursor: pointer;
+        }
+        #message {
+            margin-top: 15px;
+            font-weight: bold;
+            color: black; /* Default color */
+        }
+        .win {
+            color: green;
+        }
+        .lose {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>JS Game</h1>
+    <p id="message">
+        Hádej číslo od 1 do 20
+    </p>
+
+    <input id="guess" type="number" name="guess">
+    <input id="guessBtn" type="button" value="Hádej!">
+    <br>
+    <input id="newGameBtn" type="button" value="Nová hra" onclick="newGame()">
+
+    <p>
+        Počet pokusů <span id="attempts">0</span> / <span id="attemptsLimit">5</span>.
+    </p>
+
+    <script>
+        let secretNumber
+        let attempts
+        const attemptsLimit = 5 // Limit pokusů
+        let gameActive = true
+
+        const attemptsEl = document.getElementById('attempts')
+        const attemptsLimitEl = document.getElementById('attemptsLimit')
+        const messageEl = document.getElementById('message')
+        const guessBtnEl = document.getElementById('guessBtn')
+        const guessInputEl = document.getElementById('guess')
+
+        function newGame() {
+            // support() // Volitelné: zakomentováno pro přehlednost, pokud nechcete alert
+            gameActive = true
+            secretNumber = Math.floor(Math.random() * 20) + 1
+            attempts = 0
+            attemptsEl.textContent = attempts
+            attemptsLimitEl.textContent = attemptsLimit
+            messageEl.textContent = 'Hádej číslo od 1 do 20'
+            messageEl.className = '' // Reset class
+            guessBtnEl.disabled = false
+            guessInputEl.disabled = false
+            guessInputEl.value = ''
+            guessInputEl.focus()
+
+            console.log('--- NEW GAME ---')
+            console.log('Tajné číslo je', secretNumber)
+        }
+
+        function checkGuess() {
+            if (!gameActive) return
+
+            const guess = Number(guessInputEl.value)
+
+            if (guess < 1 || guess > 20 || isNaN(guess)) {
+                messageEl.textContent = 'Prosím zadejte platné číslo mezi 1 a 20.'
+                console.log('Neplatný vstup:', guess)
+                return
+            }
+
+            attempts++
+            attemptsEl.textContent = attempts
+            console.log(`Pokus ${attempts}: Uživatel hádá ${guess}`)
+
+            if (guess === secretNumber) {
+                // Výhra
+                messageEl.textContent = `Výborně! Uhodl(a) jste číslo ${secretNumber} na ${attempts} pokus(ů)!`
+                messageEl.className = 'win' // Změna barvy textu na zelenou
+                endGame()
+            } else if (attempts >= attemptsLimit) {
+                // Prohra
+                messageEl.textContent = `Prohrál(a) jste! Došly vám pokusy. Tajné číslo bylo ${secretNumber}.`
+                messageEl.className = 'lose' // Změna barvy textu na červenou
+                endGame()
+            } else if (guess < secretNumber) {
+                // Větší číslo
+                messageEl.textContent = 'Zkuste větší číslo.'
+            } else {
+                // Menší číslo
+                messageEl.textContent = 'Zkuste menší číslo.'
+            }
+            
+            // Vyčištění inputu po každém pokusu pro lepší UX
+            guessInputEl.value = ''
+            guessInputEl.focus()
+        }
+
+        function endGame() {
+            gameActive = false
+            guessBtnEl.disabled = true
+            guessInputEl.disabled = true
+            console.log('Hra skončila.')
+        }
+
+        // Původní podpůrné funkce z kódu (volitelné)
+        function hlaska() {
+            // alert('Pospěšte si, hra běží!')
+        }
+
+        function support() {
+            // zobrazeni hlasky po 10 sekundach
+            // window.setTimeout(hlaska, 10000)
+        }
+
+        // Přidání event listenerů
+        guessBtnEl.addEventListener('click', checkGuess)
+        guessInputEl.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                checkGuess()
+            }
+        })
+
+        // Spuštění první hry po načtení stránky
+        newGame()
+    </script>
+</body>
+</html>
