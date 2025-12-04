@@ -1,11 +1,11 @@
-# Apple
+# Rolex
 
 ---
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple logo" width="200">
+<img src="https://upload.wikimedia.org/wikipedia/commons/f/f4/Logo_da_Rolex.png" alt="Rolex logo" width="200">
 
 ---
 
 ## Psychologie barev
 
-Apple staví svou vizuální identitu především na minimalistické černé, bílé a stříbrné barevné paletě. Tyto barvy v psychologii symbolizují eleganci, jednoduchost, inovaci a prémiovou kvalitu. Minimalismus barev podtrhuje čistý a sofistikovaný design, který je pro Apple typický. Díky této vizuální volbě značka působí jako technologický lídr, jenž klade důraz na detail, estetiku a uživatelský zážitek.
+Rolex staví svou vizuální identitu především na kombinaci zelené, zlaté a černé. V psychologii tyto barvy symbolizují prestiž, exkluzivitu, tradici a nadčasový luxus. Zelená je úzce spojována s prosperitou a stabilitou, zatímco zlatá zdůrazňuje výjimečnost a řemeslnou dokonalost. Tato elegantní barevná paleta podtrhuje luxusní charakter značky a vytváří dojem absolutní kvality, preciznosti a tradičního mistrovství, kterým je Rolex proslulý.
